@@ -5,6 +5,14 @@
 #include "Kismet/GameplayStatics.h"
 #include "EmoteAction.h"
 
+void AEmotingCharacter::DoEmote(UEmoteAction* emote)
+{
+	EmoteAction = emote;
+
+	USkeletalMeshComponent* SkeletalMesh = FindComponentByClass<USkeletalMeshComponent>();
+	SkeletalMesh->GetAnimInstance()->Montage_Play(emote->Animation);
+}
+
 void AEmotingCharacter::Plant()
 {
 	FVector position = GetActorLocation() + 100.0f * GetActorForwardVector();

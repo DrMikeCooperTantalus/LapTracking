@@ -19,4 +19,7 @@ public:
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 		class UParticleSystem* Particles;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+		class UTexture2D* Icon;
 };

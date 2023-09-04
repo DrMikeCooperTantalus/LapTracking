@@ -29,6 +29,8 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 		class UEmoteAction* EmoteAction;
 
+	void DoEmote(class UEmoteAction* emote);
+
 	UFUNCTION(BlueprintCallable)
 		void Plant();
 };
