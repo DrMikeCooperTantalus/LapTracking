@@ -2,6 +2,7 @@
 
 
 #include "LapGateUser.h"
+#include <Runtime/Engine/Public/Net/UnrealNetwork.h>
 
 // Sets default values for this component's properties
 ULapGateUser::ULapGateUser()
@@ -11,6 +12,7 @@ ULapGateUser::ULapGateUser()
 	PrimaryComponentTick.bCanEverTick = true;
 
 	// ...
+	SetIsReplicatedByDefault(true);
 }
 
 
@@ -34,8 +36,22 @@ void ULapGateUser::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 	// ...
 }
 
+void ULapGateUser::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+{
+	DOREPLIFETIME(ULapGateUser, NextGate);
+	DOREPLIFETIME(ULapGateUser, LapGateStartTime);
+	DOREPLIFETIME(ULapGateUser, LapStartTime);
+	DOREPLIFETIME(ULapGateUser, LapStarted);
+	DOREPLIFETIME(ULapGateUser, CurrentLapTime);
+	DOREPLIFETIME(ULapGateUser, LastLapTime);
+	DOREPLIFETIME(ULapGateUser, BestLapTime);
+}
+
 bool ULapGateUser::EnterGate(int Index, bool LastGate)
 {
+	if (GetNetMode() == ENetMode::NM_Client)
+		return false;
+
 	if (Index == NextGate)
 	{
 		NextGate++;

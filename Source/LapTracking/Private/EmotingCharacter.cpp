@@ -5,7 +5,12 @@
 #include "Kismet/GameplayStatics.h"
 #include "EmoteAction.h"
 
-void AEmotingCharacter::DoEmote(UEmoteAction* emote)
+void AEmotingCharacter::ServerDoEmote_Implementation(UEmoteAction* emote)
+{
+	MulticastDoEmote(emote);
+}
+
+void AEmotingCharacter::MulticastDoEmote_Implementation(UEmoteAction* emote)
 {
 	EmoteAction = emote;
 

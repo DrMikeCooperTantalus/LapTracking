@@ -21,7 +21,7 @@ void UEmoteButton::NativeConstruct()
 
 void UEmoteButton::DoEmote()
 {
-	Character->DoEmote(EmoteAction);
+	Character->ServerDoEmote(EmoteAction);
 }
 
 void UEmoteButton::SetButtonIcon(UButton* button, UTexture2D* icon)

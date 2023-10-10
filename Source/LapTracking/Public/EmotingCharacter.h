@@ -29,7 +29,11 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 		class UEmoteAction* EmoteAction;
 
-	void DoEmote(class UEmoteAction* emote);
+	UFUNCTION(Server, Reliable)
+		void ServerDoEmote(class UEmoteAction* emote);
+
+	UFUNCTION(NetMulticast, Reliable)
+		void MulticastDoEmote(class UEmoteAction* emote);
 
 	UFUNCTION(BlueprintCallable)
 		void Plant();
