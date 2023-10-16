@@ -37,4 +37,7 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 		void Plant();
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnLapComplete(FTimespan time);
 };

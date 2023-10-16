@@ -7,7 +7,7 @@
 #include "LapGateUser.generated.h"
 
 
-UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
+UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent), Blueprintable )
 class LAPTRACKING_API ULapGateUser : public UActorComponent
 {
 	GENERATED_BODY()
@@ -43,4 +43,17 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 		bool EnterGate(int Index, bool LastGate);
+
+	DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FLapDelegate, FTimespan, Time);
+
+	UPROPERTY(BlueprintAssignable)
+		FLapDelegate OnLapComplete;
+	UPROPERTY(BlueprintAssignable)
+		FLapDelegate OnBestLap;
+
+	// UFUNCTION(BlueprintImplementableEvent)
+	// void OnLapComplete(FTimespan time);
+	//
+	// UFUNCTION(BlueprintImplementableEvent)
+	// void OnBestLap(FTimespan time);
 };

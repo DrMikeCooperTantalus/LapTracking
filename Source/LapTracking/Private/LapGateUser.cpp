@@ -65,8 +65,13 @@ bool ULapGateUser::EnterGate(int Index, bool LastGate)
 			LapStarted = true;
 			LapGateStartTime = FDateTime::Now();
 			LastLapTime = CurrentLapTime;
+			OnLapComplete.Broadcast(LastLapTime);
+			
 			if (BestLapTime == 0 || LastLapTime < BestLapTime)
+			{
 				BestLapTime = LastLapTime;
+				OnBestLap.Broadcast(BestLapTime);
+			}
 		}
 
 		return true;
